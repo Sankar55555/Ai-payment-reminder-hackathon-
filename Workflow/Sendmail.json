@@ -1,0 +1,312 @@
+{
+    "subflows": [
+        {
+            "flow": [
+                {
+                    "id": 19,
+                    "module": "sendinblue:SendEmail",
+                    "version": 2,
+                    "parameters": {
+                        "__IMTCONN__": 4814965
+                    },
+                    "mapper": {
+                        "to": [
+                            {
+                                "name": "{{1.name}}",
+                                "email": "{{1.email}}"
+                            }
+                        ],
+                        "params": [
+                            {
+                                "name": "{{1.name}}",
+                                "value": "{{1.amount}}"
+                            }
+                        ],
+                        "sender": {
+                            "name": "{{1.name}}",
+                            "email": "{{1.email}}"
+                        },
+                        "replyTo": {
+                            "name": "sankar",
+                            "email": "1212sankar1212@gmail.com"
+                        },
+                        "subject": "Action Needed: Payment for {{1.amount}} Due {{1.due_date}} Days",
+                        "textContent": "Hi {{1.name}},\r\nHope you’re doing well! Just a quick reminder that your college fee of ₹{{1.amount}} is due on {{1.due_date}}.\r\nWe’d appreciate it if you could complete the payment on time so everything stays smooth for your classes and activities.\r\n\r\nYou can pay easily here: [Payment Link]\r\n\r\nThank you, and see you on campus!\r\n\r\n– ssm Accounts Team"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 1200,
+                            "y": -300
+                        },
+                        "restore": {
+                            "expect": {
+                                "cc": {
+                                    "mode": "chose"
+                                },
+                                "to": {
+                                    "mode": "chose",
+                                    "items": [
+                                        null
+                                    ]
+                                },
+                                "bcc": {
+                                    "mode": "chose"
+                                },
+                                "tags": {
+                                    "mode": "chose"
+                                },
+                                "params": {
+                                    "mode": "chose",
+                                    "items": [
+                                        null
+                                    ]
+                                },
+                                "headers": {
+                                    "mode": "chose"
+                                },
+                                "attachment": {
+                                    "mode": "chose"
+                                },
+                                "templateId": {
+                                    "mode": "chose"
+                                }
+                            },
+                            "parameters": {
+                                "__IMTCONN__": {
+                                    "data": {
+                                        "scoped": "true",
+                                        "connection": "sendinblue2"
+                                    },
+                                    "label": "My Brevo connection"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "__IMTCONN__",
+                                "type": "account:sendinblue2",
+                                "label": "Connection",
+                                "required": true
+                            }
+                        ],
+                        "expect": [
+                            {
+                                "name": "templateId",
+                                "type": "select",
+                                "label": "Template"
+                            },
+                            {
+                                "name": "to",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "To",
+                                "required": true
+                            },
+                            {
+                                "name": "subject",
+                                "type": "text",
+                                "label": "Subject"
+                            },
+                            {
+                                "name": "htmlContent",
+                                "type": "text",
+                                "label": "HTML body"
+                            },
+                            {
+                                "name": "textContent",
+                                "type": "text",
+                                "label": "Text body"
+                            },
+                            {
+                                "name": "replyTo",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Reply To",
+                                "required": true
+                            },
+                            {
+                                "name": "attachment",
+                                "spec": [
+                                    {
+                                        "name": "type",
+                                        "type": "select",
+                                        "label": "Type",
+                                        "options": [
+                                            {
+                                                "label": "URL",
+                                                "value": "url",
+                                                "nested": [
+                                                    {
+                                                        "name": "fileName",
+                                                        "type": "filename",
+                                                        "label": "File name",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "url",
+                                                        "type": "url",
+                                                        "label": "Image URL",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Data",
+                                                "value": "data",
+                                                "nested": [
+                                                    {
+                                                        "name": "fileName",
+                                                        "type": "filename",
+                                                        "label": "File name",
+                                                        "required": true,
+                                                        "semantic": "file:name"
+                                                    },
+                                                    {
+                                                        "name": "data",
+                                                        "type": "buffer",
+                                                        "label": "Data",
+                                                        "required": true,
+                                                        "semantic": "file:data"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Attachments"
+                            },
+                            {
+                                "name": "bcc",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email"
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "BCC"
+                            },
+                            {
+                                "name": "cc",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email"
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "CC"
+                            },
+                            {
+                                "name": "sender",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Sender"
+                            },
+                            {
+                                "name": "headers",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Value",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Headers"
+                            },
+                            {
+                                "name": "tags",
+                                "spec": {
+                                    "name": "value",
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "Tags"
+                            },
+                            {
+                                "name": "params",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Value",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Params"
+                            }
+                        ],
+                        "advanced": true
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": 1
+    }
+}
