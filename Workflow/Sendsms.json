@@ -1,0 +1,115 @@
+{
+    "subflows": [
+        {
+            "flow": [
+                {
+                    "id": 25,
+                    "module": "sendinblue:sendSMS",
+                    "version": 2,
+                    "parameters": {
+                        "__IMTCONN__": 4814965
+                    },
+                    "mapper": {
+                        "type": "transactional",
+                        "sender": "{{1.name}}",
+                        "content": "Hi {{1.name}},\r\nHope you’re doing well! Just a quick reminder that your college fee of ₹{{1.amount}} is due on {{1.due_date}}.\r\nWe’d appreciate it if you could complete the payment on time so everything stays smooth for your classes and activities.\r\n\r\nYou can pay easily here: [Payment Link]\r\n\r\nThank you, and see you on campus!\r\n\r\n– ssm Accounts Team",
+                        "recipient": "{{1.phone}}",
+                        "organisationPrefix": "+91{{1.phone}}"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 1212,
+                            "y": 257
+                        },
+                        "restore": {
+                            "expect": {
+                                "type": {
+                                    "mode": "chose",
+                                    "label": "transactional"
+                                },
+                                "unicodeEnabled": {
+                                    "mode": "chose"
+                                }
+                            },
+                            "parameters": {
+                                "__IMTCONN__": {
+                                    "data": {
+                                        "scoped": "true",
+                                        "connection": "sendinblue2"
+                                    },
+                                    "label": "My Brevo connection"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "__IMTCONN__",
+                                "type": "account:sendinblue2,sendinblue",
+                                "label": "Connection",
+                                "required": true
+                            }
+                        ],
+                        "expect": [
+                            {
+                                "name": "sender",
+                                "type": "text",
+                                "label": "Sender",
+                                "required": true,
+                                "validate": {
+                                    "max": 11
+                                }
+                            },
+                            {
+                                "name": "recipient",
+                                "type": "text",
+                                "label": "Recipient",
+                                "required": true
+                            },
+                            {
+                                "name": "content",
+                                "type": "text",
+                                "label": "Content",
+                                "required": true
+                            },
+                            {
+                                "name": "type",
+                                "type": "select",
+                                "label": "Type",
+                                "validate": {
+                                    "enum": [
+                                        "transactional",
+                                        "marketing"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "unicodeEnabled",
+                                "type": "boolean",
+                                "label": "Unicode Enabled"
+                            },
+                            {
+                                "name": "webUrl",
+                                "type": "url",
+                                "label": "Webhook URL"
+                            },
+                            {
+                                "name": "tag",
+                                "type": "text",
+                                "label": "Tag"
+                            },
+                            {
+                                "name": "organisationPrefix",
+                                "type": "text",
+                                "label": "Organisation Prefix"
+                            }
+                        ],
+                        "advanced": true
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": 1
+    }
+}
