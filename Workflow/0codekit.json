@@ -1,0 +1,101 @@
+{
+    "subflows": [
+        {
+            "flow": [
+                {
+                    "id": 17,
+                    "module": "onesaas:codepython",
+                    "version": 2,
+                    "parameters": {
+                        "__IMTCONN__": 4825156
+                    },
+                    "mapper": {
+                        "pythonCode": "from datetime import date\r\n\r\ndef filter_items_due_today(items):\r\n    # Get today's date in yyyy-mm-dd format\r\n    today_str = date.today().isoformat()\r\n\r\n    # Filter items where Due Date matches today's date\r\n    return [item for item in items if item.get(\"{{1.due_date}}\") == today_str]\r\n"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 608,
+                            "y": 5
+                        },
+                        "restore": {
+                            "expect": {
+                                "dependencies": {
+                                    "mode": "chose"
+                                },
+                                "requirements": {
+                                    "mode": "chose"
+                                },
+                                "otherInputParameters": {
+                                    "mode": "chose"
+                                }
+                            },
+                            "parameters": {
+                                "__IMTCONN__": {
+                                    "data": {
+                                        "scoped": "true",
+                                        "connection": "onesaas2"
+                                    },
+                                    "label": "My 0-CodeKit connection"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "__IMTCONN__",
+                                "type": "account:onesaas2",
+                                "label": "Connection",
+                                "required": true
+                            }
+                        ],
+                        "expect": [
+                            {
+                                "name": "otherInputParameters",
+                                "spec": [
+                                    {
+                                        "name": "key",
+                                        "type": "text",
+                                        "label": "Key"
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "any",
+                                        "label": "Value"
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Other Input Parameters"
+                            },
+                            {
+                                "name": "requirements",
+                                "spec": {
+                                    "name": "value",
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "Requirements"
+                            },
+                            {
+                                "name": "dependencies",
+                                "spec": {
+                                    "name": "value",
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "System Dependencies"
+                            },
+                            {
+                                "name": "pythonCode",
+                                "type": "text",
+                                "label": "Your Python Code",
+                                "required": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": 1
+    }
+}
