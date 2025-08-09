@@ -1,0 +1,69 @@
+{
+    "subflows": [
+        {
+            "flow": [
+                {
+                    "id": 1,
+                    "module": "gateway:CustomWebHook",
+                    "version": 1,
+                    "parameters": {
+                        "hook": 1175224,
+                        "maxResults": 288
+                    },
+                    "mapper": {},
+                    "metadata": {
+                        "designer": {
+                            "x": 6,
+                            "y": 5
+                        },
+                        "restore": {
+                            "parameters": {
+                                "hook": {
+                                    "data": {
+                                        "editable": "true"
+                                    },
+                                    "label": "My gateway-webhook webhook"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "hook",
+                                "type": "hook:gateway-webhook",
+                                "label": "Webhook",
+                                "required": true
+                            },
+                            {
+                                "name": "maxResults",
+                                "type": "number",
+                                "label": "Maximum number of results"
+                            }
+                        ],
+                        "interface": [
+                            {
+                                "name": "name",
+                                "type": "text"
+                            },
+                            {
+                                "name": "email",
+                                "type": "text"
+                            },
+                            {
+                                "name": "due_date",
+                                "type": "text"
+                            },
+                            {
+                                "name": "amount",
+                                "type": "text"
+                            }
+                        ],
+                        "advanced": true
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": 1
+    }
+}
