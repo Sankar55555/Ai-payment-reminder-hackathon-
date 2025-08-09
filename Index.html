@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Payment Reminder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .success {
+      color: green;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>AI Payment Reminder</h2>
+  <form id="reminderForm">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Enter a 10-digit phone number">
+    <input type="date" name="due_date" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p class="success" id="successMessage">✅ Data submitted successfully!</p>
+</div>
+
+<script>
+  document.getElementById('reminderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    fetch("https://hook.us2.make.com/otn3a5qtv0fmv94lm3rjm5uc8t6y9b42", {
+      method: "POST",
+      body: new FormData(this)
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('successMessage').style.display = 'block';
+        this.reset();
+      } else {
+        alert("Error submitting data!");
+      }
+    })
+    .catch(() => alert("Error connecting to server!"));
+  });
+</script>
+
+</body>
+</html>
